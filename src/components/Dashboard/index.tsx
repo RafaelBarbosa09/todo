@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import { MdSearch } from 'react-icons/md'
+import { MdSearch } from 'react-icons/md';
 import { Todo } from "../Todo";
 import { FormEvent, useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ interface Todo {
 }
 
 export function Dashboard() {
-  const [todos, setTodos] = useState<Todo[]>([{ id: 1, task: 'teste 1', isComplete: false }, { id: 2, task: 'teste 2', isComplete: true }]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [task, setTask] = useState('');
 
   useEffect(() => {
@@ -36,6 +36,15 @@ export function Dashboard() {
     setTodos(tasksList)
   }
 
+  function handleToggleTaskCompletion(id: number) {
+    const newTasks = todos.map(todo => todo.id === id ? {
+      ...todo,
+      isComplete: !todo.isComplete
+    } : todo);
+
+    setTodos(newTasks);
+  }
+
   return (
     <>
       <Container onSubmit={handleCreateTaskToDo}>
@@ -45,7 +54,7 @@ export function Dashboard() {
         value={task}
         onChange={event => setTask(event.target.value)} />
       </Container>
-      <Todo tasks={todos} handleRemoveTask={handleRemoveTask} />
+      <Todo tasks={todos} handleRemoveTask={handleRemoveTask} handleToggleTaskCompletion={handleToggleTaskCompletion} />
     </>
   );
 }
