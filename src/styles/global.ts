@@ -52,11 +52,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: not-allowed;
   }
 
-  input[type="checkbox"] {
+  /* input[type="checkbox"] {
     background: var(--color-primary)
   }
 
   input[type="checkbox"]:checked {
     
-  }
+  } */
 `;

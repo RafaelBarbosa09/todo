@@ -1,19 +1,33 @@
 import { Container, Item } from "./styles";
-import { MdDelete } from 'react-icons/md'
+import { MdDelete } from 'react-icons/md';
+import { useState } from "react";
 
-export function Todo() {
+interface Todo {
+  task: string;
+}
+
+interface TesteProps {
+  tasks: Todo[];
+}
+
+export function Todo({ tasks }: TesteProps) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleOnCheckboxIsChecked() {
+    setIsChecked(true);
+  }
+
   return (
     <Container>
-      <Item>
-        <input type="checkbox" />
-        <span className="done">Teste todo</span>
-        <MdDelete />
-      </Item>
-      <Item>
-        <input type="checkbox" />
-        <span>Teste todo</span>
-        <MdDelete />
-      </Item>
+      {tasks.map(todo => {
+        return (
+          <Item key={todo.task}>
+            <input type="checkbox" onChange={handleOnCheckboxIsChecked}/>
+            <span className={isChecked ? 'done' : ''}>{todo.task}</span>
+            <MdDelete />
+          </Item>
+        );
+      })}
     </Container>
   );
 }
