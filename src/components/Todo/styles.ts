@@ -29,10 +29,15 @@ export const Item = styled.div`
     text-decoration: line-through 2px #fd507e;
   }
 
-  svg {
-    color: var(--color-secundary);
-    height: 1.5rem;
-    width: 1.5rem;
-    cursor: pointer;
+  button {
+    background: transparent;
+    border: 0;
+    
+    svg {
+      color: var(--color-secundary);
+      height: 1.5rem;
+      width: 1.5rem;
+      cursor: pointer;
+    }
   }
 `;

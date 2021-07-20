@@ -4,11 +4,13 @@ import { Todo } from "../Todo";
 import { FormEvent, useEffect, useState } from "react";
 
 interface Todo {
+  id: number;
   task: string;
+  isComplete: boolean;
 }
 
 export function Dashboard() {
-  const [todos, setTodos] = useState<Todo[]>([{ task: 'teste 1' }, { task: 'teste 2' }]);
+  const [todos, setTodos] = useState<Todo[]>([{ id: 1, task: 'teste 1', isComplete: false }, { id: 2, task: 'teste 2', isComplete: true }]);
   const [task, setTask] = useState('');
 
   useEffect(() => {
@@ -19,10 +21,19 @@ export function Dashboard() {
     event.preventDefault();
 
     const teste: Todo = {
-      task: task
+      id: Math.random(),
+      task: task,
+      isComplete: false
     }
     setTodos([...todos, teste])
     setTask('')
+  }
+
+  function handleRemoveTask(id: number) {
+    const tasksList = todos.filter(todo => todo.id !== id);
+    console.log(tasksList)
+
+    setTodos(tasksList)
   }
 
   return (
@@ -34,7 +45,7 @@ export function Dashboard() {
         value={task}
         onChange={event => setTask(event.target.value)} />
       </Container>
-      <Todo tasks={todos} />
+      <Todo tasks={todos} handleRemoveTask={handleRemoveTask} />
     </>
   );
 }
