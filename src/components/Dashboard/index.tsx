@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { MdSearch } from 'react-icons/md';
 import { Todo } from "../Todo";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 
 interface Todo {
   id: number;
