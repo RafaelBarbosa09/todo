@@ -14,7 +14,6 @@ interface TesteProps {
 }
 
 export function Todo({ tasks, handleRemoveTask, handleToggleTaskCompletion }: TesteProps) {
-
   return (
     <Container>
       {tasks.map((todo, index) => {

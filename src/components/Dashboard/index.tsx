@@ -13,19 +13,15 @@ export function Dashboard() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [task, setTask] = useState('');
 
-  useEffect(() => {
-    setTodos(todos);
-  }, []);
-
   function handleCreateTaskToDo(event: FormEvent) {
     event.preventDefault();
 
-    const teste: Todo = {
+    const todo: Todo = {
       id: Math.random(),
       task: task,
       isComplete: false
     }
-    setTodos([...todos, teste])
+    setTodos([...todos, todo])
     setTask('')
   }
 
